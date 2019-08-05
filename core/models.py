@@ -19,6 +19,14 @@ class Event(models.Model):
     instagram = models.CharField(max_length=255, verbose_name="Instagram")
     facebook = models.CharField(max_length=255, verbose_name="Facebook")
 
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Evento'
+        verbose_name_plural = 'Evento'
+
 
 class Speaker(models.Model):
     first_name = models.CharField(max_length=255, verbose_name="Primeiro Nome")
@@ -33,6 +41,14 @@ class Speaker(models.Model):
     twitter = models.CharField(max_length=255, verbose_name="Twitter")
     github = models.CharField(max_length=255, verbose_name="Github")
 
+    def __str__(self):
+        return self.first_name
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Convidado'
+        verbose_name_plural = 'Convidados'
+
 
 class Session(models.Model):
     title = models.CharField(max_length=255, verbose_name="Nome da Atividade")
@@ -43,4 +59,12 @@ class Session(models.Model):
     local = models.CharField(max_length=255, verbose_name="Tipo da Atividade")
     description = models.CharField(max_length=255, verbose_name="Tipo da Atividade")
     speaker = models.ForeignKey(Speaker, verbose_name="Tipo da Atividade", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Atividade'
+        verbose_name_plural = 'Atividade'
 
