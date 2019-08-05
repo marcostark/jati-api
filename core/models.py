@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Event(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(upload_to = 'media/')
     title = models.CharField(max_length=255, verbose_name="Nome do Evento")
     type = models.CharField(max_length=255, verbose_name="Tipo do Evento")
     start_time = models.CharField(max_length=255, verbose_name="Data de Inicio")
@@ -34,7 +34,7 @@ class Speaker(models.Model):
     email = models.CharField(max_length=255, verbose_name="Email")
     speciality_institution = models.CharField(max_length=255, verbose_name="Cargo/Instituição")
     biography = models.CharField(max_length=255, verbose_name="Biografia")
-    image = models.ImageField()
+    image = models.ImageField(upload_to = 'media/')
     lattes = models.CharField(max_length=255, verbose_name="Lattes")
     facebook = models.CharField(max_length=255, verbose_name="Facebook")
     linkedin = models.CharField(max_length=255, verbose_name="Linkedin")
@@ -52,13 +52,13 @@ class Speaker(models.Model):
 
 class Session(models.Model):
     title = models.CharField(max_length=255, verbose_name="Nome da Atividade")
-    image = models.ImageField()
+    image = models.ImageField(upload_to = 'media/')
     type = models.CharField(max_length=255, verbose_name="Tipo da Atividade")
-    start_time = models.CharField(max_length=255, verbose_name="Tipo da Atividade")
-    total_time = models.CharField(max_length=255, verbose_name="Tipo da Atividade")
-    local = models.CharField(max_length=255, verbose_name="Tipo da Atividade")
-    description = models.CharField(max_length=255, verbose_name="Tipo da Atividade")
-    speaker = models.ForeignKey(Speaker, verbose_name="Tipo da Atividade", on_delete=models.CASCADE)
+    start_time = models.DateTimeField(verbose_name="Hora de Inicio")
+    total_time = models.CharField(max_length=255, verbose_name="Carga horaria")
+    local = models.CharField(max_length=255, verbose_name="Local")
+    description = models.CharField(max_length=255, verbose_name="Descrição")
+    speaker = models.ForeignKey(Speaker, verbose_name="Convidado", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
